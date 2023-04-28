@@ -9,6 +9,7 @@
     // margin-top: auto;
     padding-top: 48px;
     padding-bottom: 48px;
+    gap: 15%;
     @include tablet {
         flex-direction: column;
     }
@@ -18,6 +19,7 @@
         flex-direction: column;
         gap: 20px;
         width: 30%;
+        min-width: 30%;
         color: $black;
         // flex-basis: 25%;
         @include tablet {
@@ -39,13 +41,13 @@
         }
         &__info {
             p {
-                font-size: $font-size-16 - 4px;
+                font-size: $font-size-16 - 2px;
                 // color: $white;
             }
         }
         &__socials {
             display: flex;
-            gap: 4px;
+            gap: 10px;
             align-items: center;
 
             span {
@@ -58,8 +60,8 @@
                 }
                 svg {
                     margin: auto;
-                    width: 20px;
-                    height: 20px;
+                    width: 32px;
+                    height: 32px;
                 }
             }
         }
@@ -68,10 +70,11 @@
     .rhs {
         display: flex;
         align-items: flex-start;
-        gap: 32px;
+        gap: 42px;
         color: $black;
         // flex-basis: 60%;
-        width: 55%;
+        // width: 55%;
+        width: fit-content;
         // border: 1px solid #fff;
         @include tablet {
             flex-direction: column;
@@ -90,6 +93,9 @@
                     font-size: $font-size-16 - 4px;
                     white-space: nowrap;
                     margin-bottom: 4px;
+                    @include tablet {
+                        font-size: $font-size-16 - 2px;
+                    }
                 }
             }
             .joinText {
