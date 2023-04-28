@@ -9,6 +9,9 @@
     // margin-top: auto;
     padding-top: 48px;
     padding-bottom: 48px;
+    @include tablet {
+        flex-direction: column;
+    }
 
     .lhs {
         display: flex;
@@ -17,6 +20,11 @@
         width: 30%;
         color: $black;
         // flex-basis: 25%;
+        @include tablet {
+            width: 100%;
+            margin-bottom: 32px;
+        }
+
         &__logoArea {
             display: flex;
             align-items: center;
@@ -65,6 +73,9 @@
         // flex-basis: 60%;
         width: 55%;
         // border: 1px solid #fff;
+        @include tablet {
+            flex-direction: column;
+        }
 
         .content {
             // border: 1px solid #fff;
@@ -108,6 +119,21 @@
                     height: 100%;
                     padding: 12px 24px;
                 }
+            }
+        }
+        .content1 {
+            @include tablet {
+                order: 2;
+            }
+        }
+        .content2 {
+            @include tablet {
+                order: 3;
+            }
+        }
+        .content3 {
+            @include tablet {
+                order: 1;
             }
         }
     }

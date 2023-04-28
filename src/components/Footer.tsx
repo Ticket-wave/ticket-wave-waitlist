@@ -29,7 +29,7 @@ const Footer: FunctionComponent<FooterProps> = (): ReactElement => {
                 </div>
             </div>
             <div className={styles.rhs}>
-                <div className={styles.content}>
+                <div className={`${styles.content} ${styles.content1}`}>
                     <h4>Plan Events</h4>
                     <div className={styles.content__links}>
                         <li>Create and Set Up</li>
@@ -38,7 +38,7 @@ const Footer: FunctionComponent<FooterProps> = (): ReactElement => {
                         <li>Online Events</li>
                     </div>
                 </div>
-                <div className={styles.content}>
+                <div className={`${styles.content} ${styles.content2}`}>
                     <h4>Ticketwave</h4>
                     <div className={styles.content__links}>
                         <li>About Us</li>
@@ -50,7 +50,7 @@ const Footer: FunctionComponent<FooterProps> = (): ReactElement => {
                         <li>Terms</li>
                     </div>
                 </div>
-                <div className={styles.content}>
+                <div className={`${styles.content} ${styles.content3}`}>
                     <h4>Stay Connected With Us</h4>
                     <p className={styles.joinText}>Join our mailing list to stay in the loop with our newest update on Events and concerts</p>
                     <div className={styles.content__subscribeArea}>

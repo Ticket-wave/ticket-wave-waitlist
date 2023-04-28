@@ -124,7 +124,7 @@ export default function Home() {
         <div className={styles.getSoldSection}>
           <div className={styles.getSoldSection__lhs}>
             <h3>Get access to sold-out events and be part of the action!</h3>
-            <button>Sign Up</button>
+            <button className={styles.signUpBtn}>Sign Up</button>
           </div>
           <div className={styles.getSoldSection__rhs}>
             <div className={styles.image}>

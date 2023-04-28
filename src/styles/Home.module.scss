@@ -11,6 +11,10 @@
         align-items: center;
         justify-content: center;
         gap: 12px;
+        @include tablet {
+            text-align: center;
+            padding: $padding-mobile;
+        }
         &__image {
             position: absolute;
             width: 100%;
@@ -44,10 +48,11 @@
         .searchArea {
             display: flex;
             input {
-                padding: 10px 12px;
+                padding: 12px 12px;
                 border-radius: 8px 0px 0px 8px;
                 border: none;
                 outline: none;
+                width: 300px;
             }
             button {
                 padding: 10px 12px;
@@ -70,7 +75,7 @@
 
         &__cards {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 24px;
             .eachService {
                 border: 1px solid #edeefd;
@@ -96,6 +101,9 @@
                 p {
                     text-align: left;
                     font-size: $font-size-16 - 4px;
+                    @include tablet {
+                        text-align: center;
+                    }
                 }
             }
         }
@@ -107,6 +115,9 @@
         align-items: center;
         padding: $padding-desktop;
         padding-top: 32px;
+        @include tablet {
+            padding: $padding-mobile;
+        }
         h3 {
             margin-bottom: 30px;
         }
@@ -141,7 +152,24 @@
                 background-color: #EFE6FD;
                 border-radius: 0px;
                 color: $primary-color;
+                z-index: 2;
+                &:hover {
+                    background-color: $primary-color;
+                    color: $white;
+                }
             }
+            // .signUpBtn {
+            //     position: relative;
+            //     &::after {
+            //         content: '';
+            //         position: absolute;
+            //         width: 100%;
+            //         height: 100%;
+            //         background-color: $primary-color;
+            //         left: 0;
+            //         z-index: 1;
+            //     }
+            // }
         }
         &__rhs {
             .image {
@@ -153,6 +181,33 @@
                 p {
                     font-size: $font-size-30;
                 }
+            }
+        }
+
+        @include tablet {
+            flex-direction: column;
+            padding: $padding-mobile;
+            gap: 24px;
+            &__lhs {
+                width: 100%;
+                order: 2;
+                align-items: center;
+                gap: 12px;
+                h3 {
+                    font-size: $font-size-24;
+                    font-weight: $fontWeight-300;
+                    text-align: center;
+                }
+            }
+            &__rhs {
+                order: 1;
+            .image {
+                gap: 12px;
+                height: 24px;
+                p {
+                    font-size: $font-size-16;
+                }
+            }
             }
         }
     }
