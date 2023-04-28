@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.scss'
 import images from '../../public/images'
 import { CreateEventIcon, EasyManagementIcon, EfficientPaymentIcon, QuickTicketIcon, TrackIcon, UserFiendlyPlatformIcon } from '@/components/SVGs/SVGicons'
+import { useEffect, useState } from 'react'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -40,7 +41,36 @@ export default function Home() {
       name: 'Track your performance',
       subtext: 'Our platform offers real-time reporting for tracking sales, commissions, and visitor behavior, providing valuable insights to optimize event promotion and sales strategies. Detailed reports on attendance rates, revenue, and ticket sales are easily accessible, ensuring successful events.',
     },
+  ];
+
+  const image = [
+    {
+      img: images.hero_bg_1,
+    },
+    {
+      img: images.hero_bg_2,
+    },
+    {
+      img: images.hero_bg_3,
+    },
+    {
+      img: images.hero_bg_4,
+    },
   ]
+
+  const [heroSectionImgIndex, setHeroSectionImgIndex] = useState(0);
+
+  console.log('heroSectionImgIndex: ', heroSectionImgIndex);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setHeroSectionImgIndex((prevIndex) =>
+        prevIndex === image.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 5000);
+  
+    return () => clearInterval(intervalId);
+  }, [image.length]);
 
   return (
     <>
@@ -54,7 +84,7 @@ export default function Home() {
       <div className={styles.homepageBody}>
         <div className={styles.heroSection}>
           <div className={styles.heroSection__image}>
-            <Image src={images.hero_bg_1} alt='Hero image' />
+            <Image src={image[heroSectionImgIndex].img} alt='Hero image' />
           </div>
           <h3>Tickets to unforgettable moment</h3>
           <p>&quot;Getting together to create unforgettable memories!&quot;</p>
@@ -86,13 +116,7 @@ export default function Home() {
             whether as an event organizer or attendee. Our website enables event
             enthusiasts to effortlessly search for upcoming events in their area,
             such as musical festivals, concerts, conferences, virtual experiences,
-            shows, and seminars. We also utilize our social media platforms to promote
-            events to the right audience, without incurring any additional costs.</p>
-          <p>Our core expertise is in managing event ticketing (both paid and free),
-            attendee registration, and event check-in, streamlining the ticketing
-            process for event organizers and allowing them to concentrate on other
-            critical aspects of their event. By utilizing our online ticketing and
-            event registration platform, you can save both time and money,</p>
+            shows, and seminars.</p>
         </div>
 
         {/* <div className={styles.testimonialsSection}>

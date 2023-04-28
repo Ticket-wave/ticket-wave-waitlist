@@ -25,7 +25,8 @@
                 position: absolute;
                 width: 100%;
                 height: 100%;
-                background: rgba(106, 106, 106, 0.2);
+                background: rgba(106, 106, 106, 0.3);
+                background: rgba(#000, 0.5);
                 top: 0;
                 left: 0;
             }
@@ -52,7 +53,7 @@
                 border-radius: 8px 0px 0px 8px;
                 border: none;
                 outline: none;
-                width: 300px;
+                width: 260px;
                 @include tablet {
                     width: 60%;
                     min-width: 60%;
@@ -85,7 +86,7 @@
 
         &__cards {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 24px;
             .eachService {
                 border: 1px solid #edeefd;
@@ -106,11 +107,11 @@
                     }
                 }
                 h5 {
-                    font-size: $font-size-16 - 4px;
+                    font-size: $font-size-16 - 2px;
                 }
                 p {
                     text-align: left;
-                    font-size: $font-size-16 - 4px;
+                    font-size: $font-size-16 - 2px;
                     @include tablet {
                         text-align: center;
                     }
