@@ -14,8 +14,14 @@
         display: flex;
         align-items: center;
         gap: 12px;
+        @include tablet {
+            gap: 8px;
+        }
         .logoImage {
             display: inline-flex;
+            @include tablet {
+                height: 20px;
+            }
         }
         .name {
             font-weight: $fontWeight-700;
