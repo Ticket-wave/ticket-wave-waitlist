@@ -59,8 +59,29 @@ export default function Home() {
   ]
 
   const [heroSectionImgIndex, setHeroSectionImgIndex] = useState(0);
+  const [email, setEmail]= useState('');
+  const [loading, setLoading] = useState(false)
 
-  console.log('heroSectionImgIndex: ', heroSectionImgIndex);
+  const uri:string = process.env.NEXT_PUBLIC_BE || 'http://localhost:8000'
+  const addToWaitList = async() => {
+    try{
+      setLoading(true)
+      const sendreq = await fetch(uri+'/api/waitlist', {
+        method:'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+      },
+        body:JSON.stringify({"email": email})
+      })
+      const resp = await sendreq.json()
+    }catch(e){
+      console.log(e)
+    }finally{
+      setLoading(false)
+    }
+  }
+
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -89,8 +110,8 @@ export default function Home() {
           <h3>Tickets to unforgettable moment</h3>
           <p>&quot;Getting together to create unforgettable memories!&quot;</p>
           <div className={styles.searchArea}>
-            <input type='text' placeholder='Email Address' />
-            <button>Get Early Access</button>
+            <input type='text' placeholder='Email Address' value={email} onChange={e=> setEmail(e.target.value)} />
+            <button onClick={addToWaitList}>Get Early Access</button>
           </div>
         </div>
 
