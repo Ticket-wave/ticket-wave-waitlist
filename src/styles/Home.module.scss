@@ -68,6 +68,9 @@
                 color: $white;
                 cursor: pointer;
                 white-space: nowrap;
+                min-width: 126px;
+                // min-height: 40px;
+                max-height: 40px;
                 @include tablet {
                     width: 80%;
                     padding: 12px 12px;
@@ -77,6 +80,11 @@
                     color: $primary-color;
                 }
             }
+        }
+        .errorMsg {
+            z-index: 3;
+            color: $white;
+            transform: translateY(-8px)
         }
     }
 

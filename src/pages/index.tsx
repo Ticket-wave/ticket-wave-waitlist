@@ -4,11 +4,18 @@ import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.scss'
 import images from '../../public/images'
 import { CreateEventIcon, EasyManagementIcon, EfficientPaymentIcon, QuickTicketIcon, TrackIcon, UserFiendlyPlatformIcon } from '@/components/SVGs/SVGicons'
-import { useEffect, useState } from 'react'
+import { FormEvent, useContext, useEffect, useState } from 'react'
+import { useSubscribeToWaitlist } from './api/apiClient'
+import { ToastContext } from '@/extensions/toast'
+import { emailRegex } from '@/components/constants/emailRegex'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+
+  const subscribeToWaitlist = useSubscribeToWaitlist();
+
+  const toastHandler = useContext(ToastContext);
 
   const whatweoffer = [
     {
@@ -59,28 +66,84 @@ export default function Home() {
   ]
 
   const [heroSectionImgIndex, setHeroSectionImgIndex] = useState(0);
-  const [email, setEmail]= useState('');
-  const [loading, setLoading] = useState(false)
+  const [email, setEmail] = useState('');
+  const [emailErrorMsg, setEmailErrorMsg] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const uri:string = process.env.NEXT_PUBLIC_BE || 'http://localhost:8000'
-  const addToWaitList = async() => {
-    try{
-      setLoading(true)
-      const sendreq = await fetch(uri+'/api/waitlist', {
-        method:'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-      },
-        body:JSON.stringify({"email": email})
-      })
-      const resp = await sendreq.json()
-    }catch(e){
-      console.log(e)
-    }finally{
-      setLoading(false)
+
+  function validateEmail(email?: string): boolean {
+    if (!email) {
+      return false;
     }
-  }
+    return emailRegex.test(email);
+  };
+
+
+  /**
+   * Function to subscribe to waitlist
+   */
+  async function handleSubscribeToWaitlist(e: FormEvent<HTMLFormElement>) {
+
+    e.preventDefault();
+
+    setLoading(true);
+
+    if (validateEmail(email)) {
+      // If email is valid and passes regex test 
+      setEmailErrorMsg(false);
+    } else {
+      toastHandler?.logWarning('Unable to process request', 'Please input a valid email address');
+      setLoading(false);
+      setEmailErrorMsg(true);
+      return;
+    }
+
+    await subscribeToWaitlist({ email })
+      .then((response) => {
+
+        console.log('response:', response);
+
+        if (response.status == 201) {
+          toastHandler?.logSuccess('Success', `You have successfully subscribed to our waitlist with email: ${email}`);
+        } else {
+          console.error('Error: ', response);
+
+          toastHandler?.logError('Error', 'Error subscribing to waitlist. Plwase try again.');
+        }
+      })
+      .catch((error) => {
+
+        console.error('Throw Error: ', error);
+
+        toastHandler?.logError('Error', 'Error subscribing to waitlist. Plwase try again.');
+
+        //halt loader
+        setLoading(false);
+      })
+      .finally(() => {
+        setLoading(false); // stop loading button animation after either resolve or reject
+      })
+  };
+
+  // const uri: string = process.env.NEXT_PUBLIC_BE || 'http://localhost:8000'
+  // const addToWaitList = async () => {
+  //   try {
+  //     setLoading(true)
+  //     const sendreq = await fetch(uri + '/api/waitlist', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Accept': 'application/json',
+  //         'Content-Type': 'application/json'
+  //       },
+  //       body: JSON.stringify({ "email": email })
+  //     })
+  //     const resp = await sendreq.json()
+  //   } catch (e) {
+  //     console.log(e)
+  //   } finally {
+  //     setLoading(false)
+  //   }
+  // }
 
 
   useEffect(() => {
@@ -89,7 +152,7 @@ export default function Home() {
         prevIndex === image.length - 1 ? 0 : prevIndex + 1
       );
     }, 5000);
-  
+
     return () => clearInterval(intervalId);
   }, [image.length]);
 
@@ -109,10 +172,20 @@ export default function Home() {
           </div>
           <h3>Tickets to unforgettable moment</h3>
           <p>&quot;Getting together to create unforgettable memories!&quot;</p>
-          <div className={styles.searchArea}>
-            <input type='text' placeholder='Email Address' value={email} onChange={e=> setEmail(e.target.value)} />
-            <button onClick={addToWaitList}>Get Early Access</button>
-          </div>
+          <form className={styles.searchArea} onSubmit={(e) => handleSubscribeToWaitlist(e)}>
+            <input
+              type='text'
+              placeholder='Email Address'
+              value={email}
+              onChange={e => {
+                setEmail(e.target.value)
+                setEmailErrorMsg(false);
+              }} />
+            <button type='submit' disabled={loading ? true : false} style={loading ? { cursor: 'not-allowed' } : {}}>
+              {loading ? <div className="loader" /> : 'Get Early Access'}
+            </button>
+          </form>
+          {emailErrorMsg && <span className={styles.errorMsg}>Please input your correct email</span>}
         </div>
 
         <div className={styles.offersSection}>

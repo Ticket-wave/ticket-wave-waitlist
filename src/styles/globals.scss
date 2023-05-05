@@ -97,3 +97,25 @@ img {
     }
   }
 }
+
+.loader {
+  width: 20px;
+  height: 20px;
+  margin: auto;
+  pointer-events: none;
+  border-top-color: #fff !important;
+  border-radius: 50%;
+  animation: onLoad 1s ease infinite;
+  border: 3px solid transparent;
+  z-index: 2;
+
+  @keyframes onLoad {
+      0% {
+          transform: rotate(0turn);
+      }
+
+      100% {
+          transform: rotate(1turn);
+      }
+  }
+}
