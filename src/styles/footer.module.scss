@@ -6,6 +6,8 @@
     align-items: flex-start;
     justify-content: space-between;
     background-color: $purple-color-light-1;
+    background-color: #222;
+    color: $white;
     // margin-top: auto;
     padding-top: 48px;
     padding-bottom: 48px;
@@ -20,7 +22,7 @@
         gap: 20px;
         width: 30%;
         min-width: 30%;
-        color: $black;
+        // color: $black;
         // flex-basis: 25%;
         @include tablet {
             width: 100%;
@@ -41,7 +43,7 @@
         }
         &__info {
             p {
-                font-size: $font-size-16 - 2px;
+                font-size: $font-size-16 - 3px;
                 // color: $white;
             }
         }
@@ -71,7 +73,7 @@
         display: flex;
         align-items: flex-start;
         gap: 42px;
-        color: $black;
+        // color: $black;
         // flex-basis: 60%;
         // width: 55%;
         width: fit-content;
@@ -123,6 +125,7 @@
                     border-radius: 24px;
                     white-space: nowrap;
                     height: 100%;
+                    min-width: 140px;
                     padding: 12px 24px;
                 }
             }
