@@ -61,14 +61,14 @@ const Footer: FunctionComponent<FooterProps> = (): ReactElement => {
                 } else {
                     console.error('Error: ', response);
 
-                    toastHandler?.logError('Error', 'Error subscribing to waitlist. Plwase try again.');
+                    toastHandler?.logError('Error', 'Error subscribing to waitlist. Please try again.');
                 }
             })
             .catch((error) => {
 
                 console.error('Throw Error: ', error);
 
-                toastHandler?.logError('Error', 'Error subscribing to waitlist. Plwase try again.');
+                toastHandler?.logError('Error', 'Error subscribing to waitlist. Please try again.');
 
                 //halt loader
                 setLoading(false);
