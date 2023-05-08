@@ -222,8 +222,8 @@ export function ArcIcon({ width, height, className }: any) {
 
 export function HamburgerMenuIcon({ width, height, className, fontSize, style, onClick }: any) {
   return (
-    <svg width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0.84375 18.0312H23.1562M0.84375 9.53125H23.1562M0.84375 1.03125H23.1562" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+    <svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M13 14.5V16.5H2V14.5H13ZM18 7.5V9.5H0V7.5H18ZM16 0.5V2.5H5V0.5H16Z" fill="#6200EE" />
     </svg>
   )
 };
