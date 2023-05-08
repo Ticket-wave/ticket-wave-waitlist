@@ -3,12 +3,13 @@ import React, { useState } from "react";
 import { FunctionComponent, ReactElement } from "react";
 import images from "../../public/images";
 import styles from '../styles/navbar.module.scss';
+import { CloseMenuIcon, HamburgerMenuIcon } from "./SVGs/SVGicons";
 
 interface NavbarProps {
-    
+
 }
 
-const Navbar: FunctionComponent<NavbarProps> = ():ReactElement => {
+const Navbar: FunctionComponent<NavbarProps> = (): ReactElement => {
 
     // manages the state of the icon and toggles it
     const [showNav, setShowNav] = useState(false);
@@ -17,7 +18,7 @@ const Navbar: FunctionComponent<NavbarProps> = ():ReactElement => {
         setShowNav(!showNav);
     }
 
-    return ( 
+    return (
         <nav className={`${styles.navbar} ${styles.container}`}>
             <div className={styles.navbar__logo}>
                 <div className={styles.logoImage}>
@@ -27,29 +28,24 @@ const Navbar: FunctionComponent<NavbarProps> = ():ReactElement => {
             </div>
 
             {/* burger menu */}
-            <div className={styles.navbar__burgerMenu}>
-                <Image src={images.burgerMenu} alt="" onClick={HandleClick}/>
+            <div className={styles.navbar__burgerMenu} onClick={() => setShowNav(!showNav)}>
+                {showNav ? <CloseMenuIcon /> : <HamburgerMenuIcon />}
             </div>
 
             <div className={styles.navbar__button}>
                 <button>Get early access</button>
             </div>
 
-            {/* the burger content */}
-
-            {
-                showNav && 
-                <div className={styles.navbar__dropDown}>
-                    <ul>
-                        <li>Products</li>
-                        <li>About Us</li>
-                        <li>Contact</li>
-                    </ul>
+            <div className={showNav ? styles.navbar__dropDown : styles.navbar__dropDownClose}>
+                <ul>
+                    <li>Products</li>
+                    <li>About Us</li>
+                    <li>Contact</li>
                     <button type="button">Join waitlist</button>
-                </div>
-            }
-        </nav> 
+                </ul>
+            </div>
+        </nav>
     );
 }
- 
+
 export default Navbar;

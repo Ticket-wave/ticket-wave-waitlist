@@ -13,12 +13,13 @@
     &__logo {
         display: flex;
         align-items: center;
-        gap: 12px;
+        gap: 8px;
         @include tablet {
             gap: 8px;
         }
         .logoImage {
             display: inline-flex;
+            height: 20px;
             @include tablet {
                 height: 20px;
             }
@@ -32,30 +33,59 @@
         cursor: pointer;
         display: none;
 
-        @media (max-width: (768px)) {
-            display: block;
-        }
-        @media (max-width: (520px)) {
-            display: block;
-        }
-
-        @media (max-width: (320px)) {
-            display: block;
+        @include tablet {
+            background-color: #EFE6FD;
+            width: 30px;
+            height: 30px;
+            display: grid;
+            place-items: center;
+            border-radius: 100%;
+            svg {
+                path {
+                    fill: $primary-color;
+                }
+            }
         }
     }
     // burger content
     &__dropDown {
-        width: 130px;
-        padding: 2%;
-        position: absolute;
-        right: 0;
-        top: 60%;
+        // width: 130px;
+        // padding: 2%;
+        // position: absolute;
+        // right: 0;
+        // top: 60%;
+        // z-index: 100;
+        // background: #fff;
+
+        position: fixed;
+        width: 100vw;
+        // height: calc(100vh - 68px);
+        height: 30vh;
+        top: 60px;
+        background-color: $white;
+        // top: 0;
+        left: 0;
         z-index: 100;
-        background: #fff;
+        animation: dropOpen 400ms ease;
+        overflow: hidden;
+
+        @keyframes dropOpen {
+            from {
+                height: 0vh;
+                opacity: 0;
+            }
+        }
 
         ul {
+            padding: 20px;
             width: 100%;
             height: 100%;
+            // border: 1px solid #000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            // gap: 20px;
 
             li {
                 list-style-type: none;
@@ -63,7 +93,7 @@
                 font-style: normal;
                 font-size: 16px;
                 color: #4D4D4D;
-                margin: 15% 0;
+                // margin: 15% 0;
                 cursor: pointer;
             }
 
@@ -72,11 +102,30 @@
         button {
             @include big-button;
             // width: 100%;
-            text-align: center;
-            font-size: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            // text-align: center;
+            // font-size: 10px;
+            // display: flex;
+            // align-items: center;
+            // justify-content: center;
+        }
+    }
+
+    &__dropDownClose {
+        @extend .navbar__dropDown;
+        height: 0vh;
+        // opacity: 0;
+        animation: closeUp 400ms ease;
+
+        @keyframes closeUp {
+            from {
+                height: 30vh;
+                // opacity: 1;
+            }
+            // 100% {
+            //     display: none;
+            //     height: 0vh;
+            //     opacity: 0;
+            // }
         }
     }
 
