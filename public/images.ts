@@ -6,7 +6,8 @@ import hero_bg_2 from "./images/hero_bg_2.jpg";
 import hero_bg_3 from "./images/hero_bg_3.jpg";
 import hero_bg_4 from "./images/hero_bg_4.jpg";
 import user from "./images/user.jpg";
-import burgerMenu from './images/burgerMenu.svg'
+import burgerMenu from './images/burgerMenu.svg';
+import unsubscribe from './images/unsubscribe.png';
 
 /* eslint import/no-anonymous-default-export: [2, {"allowObject": true}] */
 export default {
@@ -17,5 +18,6 @@ export default {
   hero_bg_3,
   hero_bg_4,
   user,
-  burgerMenu
+  burgerMenu,
+  unsubscribe
 };
