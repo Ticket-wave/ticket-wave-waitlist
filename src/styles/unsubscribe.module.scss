@@ -6,6 +6,9 @@
     padding: 48px;
     display: flex;
     flex-direction: column;
+    @include tablet {
+        padding: 48px 24px;
+    }
 
     &__image {
         height: 100px;
@@ -34,7 +37,7 @@
             }
         }
         @include tablet {
-            width: 85%;
+            width: 100%;
         }
     }
 
