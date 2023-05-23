@@ -8,6 +8,7 @@ import { FormEvent, useContext, useEffect, useState } from 'react'
 import { useSubscribeToWaitlist } from './api/apiClient'
 import { ToastContext } from '@/extensions/toast'
 import { emailRegex } from '@/components/constants/emailRegex'
+import { motion } from 'framer-motion';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -170,8 +171,18 @@ export default function Home() {
           <div className={styles.heroSection__image}>
             <Image src={image[heroSectionImgIndex].img} alt='Hero image' />
           </div>
-          <h3>Tickets to unforgettable moment</h3>
-          <p>&quot;Getting together to create unforgettable memories!&quot;</p>
+          <motion.h3
+            initial={{ opacity: 0, scale: 1, y: 24 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: 'linear' }}>
+            Tickets to unforgettable moment
+          </motion.h3>
+          <motion.p
+            initial={{ opacity: 0, scale: 1, y: -12 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: 'easeIn' }}>
+            &quot;Getting together to create unforgettable memories!&quot;
+          </motion.p>
           <form className={styles.searchArea} onSubmit={(e) => handleSubscribeToWaitlist(e)}>
             <input
               type='text'
@@ -193,17 +204,23 @@ export default function Home() {
           <div className={styles.offersSection__cards}>
             {
               whatweoffer.map((each, index) => (
-                <div className={styles.eachService} key={index}>
+                <motion.div className={styles.eachService} key={index}
+                  initial={{ opacity: 0, scale: 0.8, y: -12 }}
+                  whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                  transition={{ duration: 0.6, ease: 'easeIn' }}>
                   <span>{each.svg}</span>
                   <h5>{each.name}</h5>
                   <p>{each.subtext}</p>
-                </div>
+                </motion.div>
               ))
             }
           </div>
         </div>
 
-        <div className={styles.aboutSection}>
+        <motion.div className={styles.aboutSection}
+          initial={{ opacity: 0, scale: 0.5, y: 0 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: 'easeIn' }}>
           <h3>About Us</h3>
           <p>Ticketwave is a cutting-edge, safe, and user-friendly event ticketing platform
             in Nigeria designed to provide each user with a distinct experience,
@@ -211,7 +228,7 @@ export default function Home() {
             enthusiasts to effortlessly search for upcoming events in their area,
             such as musical festivals, concerts, conferences, virtual experiences,
             shows, and seminars.</p>
-        </div>
+        </motion.div>
 
         {/* <div className={styles.testimonialsSection}>
           <h3>Testimonials</h3>
@@ -241,14 +258,22 @@ export default function Home() {
 
         <div className={styles.getSoldSection}>
           <div className={styles.getSoldSection__lhs}>
-            <h3>Get access to sold-out events and be part of the action!</h3>
+            <motion.h3
+              initial={{ opacity: 0, scale: 0.8, x: -300 }}
+              whileInView={{ opacity: 1, scale: 1, x: -0 }}
+              transition={{ duration: 0.6, ease: 'easeIn' }}>
+              Get access to sold-out events and be part of the action!
+            </motion.h3>
             {/* <button className={styles.signUpBtn}>Sign Up</button> */}
           </div>
           <div className={styles.getSoldSection__rhs}>
-            <div className={styles.image}>
+            <motion.div className={styles.image}
+              initial={{ opacity: 0, scale: 0.8, x: 100 }}
+              whileInView={{ opacity: 1, scale: 1, x: -0 }}
+              transition={{ duration: 0.6, ease: 'easeIn' }}>
               <Image src={images.logo_white} alt='logo' />
               <p>Ticketwave</p>
-            </div>
+            </motion.div>
           </div>
         </div>
 

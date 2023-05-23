@@ -1,0 +1,48 @@
+@import "./reuseables";
+@import "./variables.scss";
+
+.unsubscribe {
+    background-color: #d5542a;
+    padding: 48px;
+    display: flex;
+    flex-direction: column;
+
+    &__image {
+        height: 100px;
+        // img {
+        //     box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.2);
+        // }
+    }
+
+    &__textArea {
+        background-color: $white;
+        width: 50%;
+        margin: 0 auto;
+        border-radius: 12px;
+        margin-top: 24px;
+        padding: 24px;
+        line-height: 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
+        p {
+            font-size: 14px;
+            text-align: center;
+            &:last-child {
+                font-weight: 500;
+            }
+        }
+        @include tablet {
+            width: 85%;
+        }
+    }
+
+    .bottom {
+        margin: 0 auto;
+        margin-top: 10px;
+        text-align: center;
+        font-size: 14px;
+        color: $white;
+    }
+}
